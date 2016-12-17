@@ -47,6 +47,7 @@ public class Main {
                     ProcessBuilder pb = new ProcessBuilder("ffmpeg", "-i", files[0].getPath() , files[0].getName().split("\\.")[0] + ".mp4\"");
                     pb.directory(new File(folder2.getPath()));
                     pb.environment();
+                    System.out.println("コマンド:" + pb.command());
                     Process p = pb.start();
 
                     p.waitFor();
