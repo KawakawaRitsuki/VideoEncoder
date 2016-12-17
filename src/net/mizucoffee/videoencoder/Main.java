@@ -44,8 +44,7 @@ public class Main {
 
                     System.out.println("エンコード開始");
                     System.out.println("ファイル名:" + files[0].getName());
-                    System.out.println("コマンド:" + "cd \"" + folder2.getPath() + "\"&ffmpeg -i \"" + files[0].getPath() + "\" \"" + files[0].getName().split("\\.")[0] + ".mp4\"");
-                    ProcessBuilder pb = new ProcessBuilder("C:¥ffmpeg¥bin¥ffmpeg.exe -i \"" + files[0].getPath() + "\" \"" + files[0].getName().split("\\.")[0] + ".mp4\"");
+                    ProcessBuilder pb = new ProcessBuilder("ffmpeg", "-i", files[0].getPath() , files[0].getName().split("\\.")[0] + ".mp4\"");
                     pb.directory(new File(folder2.getPath()));
                     pb.environment();
                     Process p = pb.start();
