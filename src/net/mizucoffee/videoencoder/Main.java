@@ -42,15 +42,19 @@ public class Main {
 
                 Runtime runtime = Runtime.getRuntime();
                 try {
-                    System.out.println("ffmpeg -i \"" + files[0].getPath() + "\" \"" + folder2 + "¥" + files[0].getName().split("¥¥.")[0] + ".mp4\"");
+
+                    System.out.println("エンコード開始");
+                    System.out.println("ファイル名:" + files[0].getName());
                     Process p = runtime.exec("ffmpeg -i \"" + files[0].getPath() + "\" \"" + folder2 + "¥" + files[0].getName().split("¥¥.")[0] + ".mp4\"");
                     p.waitFor();
+                    System.out.println("エンコード完了");
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 files[0].delete();
+                System.out.println("ファイル削除完了");
             }
             try {
                 Thread.sleep(1000L);
