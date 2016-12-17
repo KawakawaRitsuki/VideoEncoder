@@ -46,7 +46,10 @@ public class Main {
                     System.out.println("コマンド:" + "move "+files[0].getPath() + " " + files[0].getParent()+ "\\0.flv");
                     ProcessBuilder mv = new ProcessBuilder("cmd.exe", "/c", "move", files[0].getPath() , files[0].getParent() + "\\0.flv");
                     mv.directory(new File(folder1.getPath()));
-                    mv.start();
+                    Process m = mv.start();
+
+                    m.waitFor();
+                    m.destroy();
 
                     ProcessBuilder pb = new ProcessBuilder("ffmpeg" ,"-i", files[0].getParent()+ "\\0.flv" , files[0].getName().split("\\.")[0] + ".mp4");
                     pb.directory(new File(folder2.getPath()));
@@ -57,14 +60,23 @@ public class Main {
 
                     p.waitFor();
                     p.destroy();
+
                     System.out.println("エンコード完了");
+
+                    ProcessBuilder rm = new ProcessBuilder("cmd.exe", "/c", "del",files[0].getParent() + "\\0.flv");
+                    rm.directory(new File(folder1.getPath()));
+                    Process r = rm.start();
+
+                    r.waitFor();
+                    r.destroy();
+
+                    System.out.println("ファイル削除完了");
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                files[0].delete();
-                System.out.println("ファイル削除完了");
             }
             try {
                 Thread.sleep(1000L);
