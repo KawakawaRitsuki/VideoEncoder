@@ -44,8 +44,7 @@ public class Main {
                     System.out.println("エンコード開始");
                     System.out.println("ファイル名:" + files[0].getName());
                     System.out.println("コマンド:" + "move "+files[0].getPath() + " " + files[0].getParent()+ "¥0.flv");
-                    ProcessBuilder mv = new ProcessBuilder("move" ,files[0].getPath(), files[0].getParent()+ "¥0.flv");
-                    mv.start();
+                    Runtime.getRuntime().exec("cmd.exe /c move "+files[0].getPath() + " " + files[0].getParent()+ "¥0.flv");
                     ProcessBuilder pb = new ProcessBuilder("ffmpeg" ,"-i", files[0].getParent()+ "¥0.flv" , files[0].getName().split("¥¥.") + ".mp4");
                     pb.directory(new File(folder2.getPath()));
                     pb.inheritIO();
