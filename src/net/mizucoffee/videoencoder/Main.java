@@ -42,8 +42,8 @@ public class Main {
 
                 Runtime runtime = Runtime.getRuntime();
                 try {
-                    System.out.println("ffmepg -i \"" + files[0].getPath() + "\" \"" + folder2 + "¥" + files[0].getName().split(",")[0] + ".mp4\"");
-                    Process p = runtime.exec("ffmepg -i " + files[0].getPath() + " " + folder2 + "¥" + files[0].getName().split(",")[0] + ".mp4");
+                    System.out.println("ffmepg -i \"" + files[0].getPath() + "\" \"" + folder2 + "¥" + files[0].getName().split(".")[0] + ".mp4\"");
+                    Process p = runtime.exec("ffmepg -i \"" + files[0].getPath() + "\" \"" + folder2 + "¥" + files[0].getName().split(".")[0] + ".mp4\"");
                     p.waitFor();
                 } catch (IOException e) {
                     e.printStackTrace();
