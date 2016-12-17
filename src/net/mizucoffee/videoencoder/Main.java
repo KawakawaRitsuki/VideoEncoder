@@ -37,18 +37,20 @@ public class Main {
 
         while(true){
             File[] files = folder1.listFiles();
-            files[0].getPath();
+            if(files.length != 0) {
+                files[0].getPath();
 
-            Runtime runtime = Runtime.getRuntime();
-            try {
-                Process p = runtime.exec("ffmepg -i " + files[0].getPath() + " " + folder2 + files[0].getName().split(",")[0] + ".mp4");
-                p.waitFor();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                Runtime runtime = Runtime.getRuntime();
+                try {
+                    Process p = runtime.exec("ffmepg -i " + files[0].getPath() + " " + folder2 + files[0].getName().split(",")[0] + ".mp4");
+                    p.waitFor();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                files[0].delete();
             }
-            files[0].delete();
             try {
                 Thread.sleep(1000L);
             } catch (InterruptedException e) {
