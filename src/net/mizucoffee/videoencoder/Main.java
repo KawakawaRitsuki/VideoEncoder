@@ -45,7 +45,7 @@ public class Main {
 
                     System.out.println("エンコード開始");
                     System.out.println("ファイル名:" + files[0].getName());
-                    Process p = runtime.exec("ffmpeg -i \"" + files[0].getPath() + "\" \"" + folder2 + "¥" + files[0].getName().split("\\.")[0] + ".mp4\"");
+                    Process p = runtime.exec("cd \"" + folder2 + "\"&ffmpeg -i \"" + files[0].getPath() + "\" \"" + files[0].getName().split("\\.")[0] + ".mp4\"");
                     p.waitFor();
                     p.destroy();
                     System.out.println("エンコード完了");
